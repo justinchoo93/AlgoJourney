@@ -125,7 +125,28 @@ class LRUCache3 {
     this.cache = new Map();
   }
 
-  get(key) {}
+  get(key) {
+    // save the retreived value into a variable
+    const retrievedValue = this.map.get(key);
 
-  put(key, value) {}
+    // delete the key value from map
+    this.cache.delete(key);
+
+    // set the key value to the end of map
+    this.cache.set(key, retrievedValue);
+    return retrievedValue;
+  }
+
+  put(key, value) {
+    // check if map size is full
+    if (this.cache.size === this.size) {
+      // gets keys of map (O(1))
+      const keys = this.map.keys();
+      // deletes the first key
+      this.map.delete(keys.next().value);
+    }
+
+    if (this.map.has(key)) this.map.delete(key);
+    this.map.set(key, value);
+  }
 }
