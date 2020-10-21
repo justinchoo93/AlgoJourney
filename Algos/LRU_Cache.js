@@ -58,13 +58,54 @@ class LRUCache2 {
   constructor(size) {
     this.head = null;
     this.tail = null;
-    this.size = size;
+    this.size = 0;
+    this.maxSize = size;
     this.cache = {};
   }
 
   get(key) {}
 
-  put(key, value) {}
+  put(key, value) {
+    let newNode;
+
+    // if key does not exist in the cache
+    if (!this.cache[key]) newNode = new Node(key, value);
+
+    // if we have empty list
+    if (!this.size) {
+      // add new node to head and tail
+      this.head = newNode;
+      this.tail = newNode;
+
+      // increment size
+      this.size++;
+
+      // assign newNode as value to key in cache
+      this.cache[key] = newNode;
+      return this;
+    }
+
+    // if cache is full
+    if (this.size === this.maxSize) {
+      // remove from cache
+      delete this.cache[this.tail.key];
+
+      // set new head
+      this.head = this.head.next;
+      this.head.prev = null;
+      this.size--;
+    }
+
+    // add item to tail
+    this.tail.next = newNode;
+    newNode.prev = this.tail;
+    this.tail = newNode;
+    this.size++;
+
+    // add to cache
+    this.cache[key] = newNode;
+    return this;
+  }
 }
 
 // Doubly Linked List Node
