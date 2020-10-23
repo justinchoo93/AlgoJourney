@@ -56,7 +56,7 @@ const floodFill = function (image, sr, sc, newColor) {
   return image;
 };
 
-// sample input
+// sample input 1
 const image = [
   [1, 1, 1],
   [1, 1, 0],
@@ -69,3 +69,25 @@ const sc = 1;
 const newColor = 2;
 
 floodFill(image, sr, sc, newColor); // [[2, 2, 2], [2, 2, 0], [2, 0 ,1]]
+
+// sample input 2
+const image2 = [
+  [1, 1, 1, 1, 0],
+  [1, 1, 0, 1, 1],
+  [1, 0, 1, 0, 1],
+  [0, 1, 1, 1, 0],
+  [1, 1, 1, 1, 1],
+];
+
+floodFill(image2, 2, 2, 2);
+console.log(image2);
+
+/*
+const outputimage2 = [
+  [1, 1, 1, 1, 0],
+  [1, 1, 0, 1, 1],
+  [1, 0, 2, 0, 1],
+  [0, 2, 2, 2, 0],
+  [2, 2, 2, 2, 2],
+];
+*/
