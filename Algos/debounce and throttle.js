@@ -13,7 +13,7 @@ function debounce(cb, time) {
     }, time);
   };
 }
-
+// for debounce, only the last function will execute
 // debouncedFn()
 // debouncedFn()
 // debouncedFn()
